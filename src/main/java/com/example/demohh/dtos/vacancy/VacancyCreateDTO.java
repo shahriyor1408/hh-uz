@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class VacancyCreateDTO implements VacancyActions{
+public class VacancyCreateDTO{
     private String title;
     private int salaryFrom;
     private int salaryTo;
