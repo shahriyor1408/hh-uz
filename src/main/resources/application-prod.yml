@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demohh
+    username: postgres
+    password: 123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  main:
+    banner-mode: off
+
+#jwt:
+#  access:
+#    token:
+#      secret: U0RGVyQ0MzUzZnNkRyUkXiQlXjxERkhHPE9ZVUslJF4+SkhGR0pUUllVJV4=
+#      expiry:
+#        adding:
+#          amount: 999
+#        time:
+#          unit: MINUTES
+#  refresh:
+#    token:
+#      secret: c2RGJF4lJiVeKERGR05NU0RGR0xFRktHREZMT0pUIylUIyQlXiMkJV9eJCVe
+#      expiry:
+#        adding:
+#          amount: 10
+#        time:
+#          unit: DAYS
+  #
+  # swagger
+  #
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
+#activation:
+#  link:
+#    expiry:
+#      in:
+#        minutes: 2
+

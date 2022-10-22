@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: prod
+
+#  thymeleaf:
+#    cache: false
+#  servlet:
+#    multipart:
+#      max-file-size: 100MB
