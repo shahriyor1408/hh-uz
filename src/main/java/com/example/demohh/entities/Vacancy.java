@@ -1,5 +1,6 @@
 package com.example.demohh.entities;
 
+import com.example.demohh.entities.base.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,11 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Vacancy {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Vacancy extends Auditable {
 
     private String title;
 

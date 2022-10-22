@@ -2,13 +2,9 @@ package com.example.demohh.controllers;
 
 import com.example.demohh.dtos.vacancy.VacancyCreateDTO;
 import com.example.demohh.dtos.vacancy.VacancyDTO;
-import com.example.demohh.dtos.vacancy.VacancyUpdateDTO;
 import com.example.demohh.response.ApiResponse;
 import com.example.demohh.services.VacancyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -36,6 +32,13 @@ public class VacancyController extends ApiController<VacancyService> {
     public ApiResponse<Void> update(@Valid @RequestBody VacancyDTO dto) {
         service.update(dto);
         return new ApiResponse<>(201);
+    }
+
+    @DeleteMapping(PATH + "/vacancy/{id}")
+    public ApiResponse<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        // TODO: 19/08/22 standardize status codes
+        return new ApiResponse<>(204);
     }
 
 
