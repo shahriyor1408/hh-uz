@@ -2,6 +2,7 @@ package com.example.demohh.controllers;
 
 import com.example.demohh.dtos.vacancy.VacancyCreateDTO;
 import com.example.demohh.dtos.vacancy.VacancyDTO;
+import com.example.demohh.dtos.vacancy.VacancyUpdateDTO;
 import com.example.demohh.response.ApiResponse;
 import com.example.demohh.services.VacancyService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +31,12 @@ public class VacancyController extends ApiController<VacancyService> {
         // TODO: 19/08/22 standardize status codes
         return new ApiResponse<>(201);
     }
+
+    @PostMapping(PATH + "/vacancy/update")
+    public ApiResponse<Void> update(@Valid @RequestBody VacancyDTO dto) {
+        service.update(dto);
+        return new ApiResponse<>(201);
+    }
+
+
 }

@@ -1,7 +1,9 @@
 package com.example.demohh.services;
 
+import com.example.demohh.dtos.vacancy.VacancyActions;
 import com.example.demohh.dtos.vacancy.VacancyCreateDTO;
 import com.example.demohh.dtos.vacancy.VacancyDTO;
+import com.example.demohh.dtos.vacancy.VacancyUpdateDTO;
 import com.example.demohh.entities.Currency;
 import com.example.demohh.entities.KeySkill;
 import com.example.demohh.entities.Vacancy;
@@ -35,14 +37,28 @@ public class VacancyService {
 
     public void create(VacancyCreateDTO dto) {
         Vacancy vacancy = mapper.fromVacancyCreateDTO(dto);
-
-        Supplier<GenericNotFoundException> notFoundException = () -> new GenericNotFoundException("Currency not found", 404);
-        vacancy.setCurrency(currencyRepository.getCurrencyByName(dto.getCurrency().getName()).orElseThrow(notFoundException));
+        vacancy.setCurrency(currencyRepository.getCurrencyByName(dto.getCurrency().getName()).orElseThrow(() -> new GenericNotFoundException("Currency not found", 404)));
 
         List<KeySkill> keySkills = keySkillsMapper.toEntities(dto.getKeySkills());
         keySkillRepository.saveAll(keySkills);
-        vacancy.setKeySkills(keySkills);
 
+        vacancy.setKeySkills(keySkills);
+        repository.save(vacancy);
+    }
+
+
+    public void update(VacancyDTO dto) {
+        repository.findById(dto.getId()).orElseThrow(() -> new GenericNotFoundException("Vacancy not found", 404));
+        Currency currency = currencyRepository.getCurrencyByName(dto.getCurrency().getName())
+                .orElseThrow(() -> new GenericNotFoundException("Currency not found", 404));
+
+        Vacancy vacancy = mapper.toEntities(dto);
+
+        List<KeySkill> keySkills = keySkillsMapper.toEntities(dto.getKeySkills());
+        keySkillRepository.saveAll(keySkills);
+
+        vacancy.setKeySkills(keySkills);
+        vacancy.setCurrency(currency);
         repository.save(vacancy);
     }
 
