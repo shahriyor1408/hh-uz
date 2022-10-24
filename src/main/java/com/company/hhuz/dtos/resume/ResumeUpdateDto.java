@@ -7,4 +7,5 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ResumeUpdateDto {
+
 }
