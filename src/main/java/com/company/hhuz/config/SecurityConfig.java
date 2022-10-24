@@ -21,8 +21,6 @@ import java.util.Properties;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
-
     private AuthService authService;
 
     public void setAuthService(AuthService authService) {
@@ -50,7 +48,6 @@ public class SecurityConfig {
 
     public void configurer(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
-
     }
 
     @Bean
