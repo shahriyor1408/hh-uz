@@ -19,6 +19,7 @@ public class VacancyDTO {
     private int salaryFrom;
     private int salaryTo;
     private CurrencyDTO currency;
+    private String additionalInfo;
     private String body;
     private List<KeySkillDTO> keySkills;
 

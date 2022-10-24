@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,11 @@ public class VacancyService {
 
     public List<VacancyDTO> getAll() {
         return mapper.toDTOs(repository.getAll());
+    }
+
+    public VacancyDTO get(Long id) {
+        Supplier<GenericNotFoundException> notFoundException = () -> new GenericNotFoundException("Vacancy not found", 404);
+        return mapper.toDTO(repository.get(id).orElseThrow(notFoundException));
     }
 
     public void create(VacancyCreateDTO dto) {
@@ -65,4 +71,6 @@ public class VacancyService {
         vacancy.setIsDeleted(1);
         repository.save(vacancy);
     }
+
+
 }

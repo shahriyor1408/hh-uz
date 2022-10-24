@@ -24,6 +24,8 @@ public class Vacancy extends Auditable {
     @OneToOne
     private Currency currency;
 
+    private String additionalInfo;
+
     private String body;
 
     @ManyToMany(fetch = FetchType.EAGER)

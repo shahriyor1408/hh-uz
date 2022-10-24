@@ -21,6 +21,11 @@ public class VacancyController extends ApiController<VacancyService> {
         return new ApiResponse<>(service.getAll());
     }
 
+    @GetMapping(PATH + "/vacancy/{id}")
+    public ApiResponse<VacancyDTO> get(@PathVariable Long id) {
+        return new ApiResponse<>(service.get(id));
+    }
+
     @PostMapping(PATH + "/vacancy")
     public ApiResponse<Void> create(@Valid @RequestBody VacancyCreateDTO dto) {
         service.create(dto);
