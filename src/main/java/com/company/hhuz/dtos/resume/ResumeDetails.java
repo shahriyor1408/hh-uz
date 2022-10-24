@@ -8,4 +8,5 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ResumeDetails {
+
 }
